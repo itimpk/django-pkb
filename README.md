@@ -19,7 +19,7 @@ A simple notes application built with Django.
 
 -   [✅] Create base template (`base.html`)
 -   [✅] Style with Tailwind or Bootstrap
--   [ ] Add flash messages (e.g., "Note created!")
+-   [✅] Add flash messages (e.g., "Note created!")
 
 ## 🔍 Phase 2: Usability Features
 

@@ -2,6 +2,8 @@ from django.shortcuts import render , redirect , get_object_or_404
 from .models import Note
 from django.contrib.auth.decorators import login_required
 from .forms import NoteForm
+from django.contrib import messages
+
 
 @login_required
 def note_list(request):
@@ -16,6 +18,7 @@ def note_form(request):
         note.owner = request.user
         note.save()
         form.save_m2m()
+        messages.success(request, "Note Created!")
         return redirect('note_list')
     return render(request, 'notes/note_form.html', {'form': form})
 
@@ -29,6 +32,7 @@ def note_update(request, id):
     form = NoteForm(request.POST or None, instance=note)
     if request.method == 'POST' and form.is_valid():
         form.save()
+        messages.info(request, "Note Updated!")
         return redirect('note_list')
     return render(request, 'notes/note_form.html', {'form': form})
 
@@ -36,5 +40,6 @@ def note_delete(request, id):
     note = Note.objects.get(id=id, owner=request.user)
     if request.method == 'POST':
         note.delete()
+        messages.error(request, "Note Deleted!")
         return redirect('note_list')
     return redirect('note_detail', id=id)
