@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.postgres',  # for full-text search later
     'notes',
     'taggit',  # for tagging support
+    "widget_tweaks",
 ]
 
 MIDDLEWARE = [

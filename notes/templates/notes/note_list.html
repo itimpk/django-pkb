@@ -1,10 +1,22 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  <h2>Your Notes</h2>
-  <ul>
+  <div class="flex justify-between items-center mb-4">
+    <h2 class="text-xl font-semibold">Your Notes</h2>
+    <a href="{% url 'note_create' %}"
+       class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+      + Add Note
+    </a>
+  </div>
+
+  <ul class="space-y-3">
     {% for note in notes %}
-      <li><strong>{{ note.title }}</strong> - {{ note.updated_at }}</li>
+      <li class="p-4 bg-white shadow-sm rounded">
+        <a href="{% url 'note_detail' note.id %}" class="text-lg font-medium text-blue-600 hover:underline">
+          {{ note.title }}
+        </a>
+        <p class="text-sm text-gray-500">{{ note.updated_at|date:"SHORT_DATETIME_FORMAT" }}</p>
+      </li>
     {% empty %}
       <li>No notes yet.</li>
     {% endfor %}
