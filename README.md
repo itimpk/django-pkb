@@ -37,11 +37,11 @@ A simple notes application built with Django.
 
 ## 🌐 Phase 3: REST API (DRF)
 
--   [ ] Install and set up Django REST Framework
--   [ ] Create read-only API for notes
--   [ ] Add create/update/delete endpoints
--   [ ] Protect API with user auth (token or session)
--   [ ] Test API with Postman or Swagger
+-   [✅] Install and set up Django REST Framework
+-   [✅] Create read-only API for notes
+-   [✅] Add create/update/delete endpoints
+-   [✅] Protect API with user auth (token or session)
+-   [✅] Test API with Postman or Swagger
 
 ## ⚙️ Phase 4: Admin & Settings
 
