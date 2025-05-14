@@ -2,13 +2,18 @@ from django.shortcuts import render , redirect , get_object_or_404
 from .models import Note
 from django.contrib.auth.decorators import login_required
 from .forms import NoteForm
+from .filters import NoteFilter
 from django.contrib import messages
-
+from django.db.models import Q
 
 @login_required
 def note_list(request):
-    notes = Note.objects.filter(owner=request.user).order_by('-updated_at')
-    return render(request, 'notes/note_list.html', {'notes': notes})
+    notes = Note.objects.filter(owner=request.user)
+    note_filter = NoteFilter(request.GET, queryset=notes)
+    return render(request, 'notes/note_list.html', {
+        'filter': note_filter,
+        'notes': note_filter.qs,
+    })
 
 
 def note_form(request):
