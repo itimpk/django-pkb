@@ -129,6 +129,14 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+STATIC_URL = '/static/'
+
+# This is used only for production
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+# Optional: for dev use of shared/static folder
+STATICFILES_DIRS = [BASE_DIR / 'static']
+
 
 LOGIN_REDIRECT_URL = 'note_list'
 LOGOUT_REDIRECT_URL = 'login'
