@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block title %}Login{% endblock %}
+{% load widget_tweaks %}
+
+{% block content %}
+  <div class="min-h-screen bg-gray-100 flex items-center justify-center py-12">
+    <div class="bg-white shadow-md rounded-xl p-8 w-full max-w-md">
+      <h2 class="text-2xl font-bold mb-6 text-center">Login</h2>
+      <form method="post">
+        {% csrf_token %}
+        {% if form.non_field_errors %}
+          <div class="text-red-500 text-sm mb-4">
+            {{ form.non_field_errors }}
+          </div>
+        {% endif %}
+
+        <div class="mb-4">
+          <label class="block text-sm font-medium mb-1">Username</label>
+          {{ form.username|add_class:"w-full p-2 border border-gray-300 rounded" }}
+          {{ form.username.errors }}
+        </div>
+
+        <div class="mb-6">
+          <label class="block text-sm font-medium mb-1">Password</label>
+          {{ form.password|add_class:"w-full p-2 border border-gray-300 rounded" }}
+          {{ form.password.errors }}
+        </div>
+
+        <button type="submit"
+                class="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700">
+          Login
+        </button>
+      </form>
+
+      <p class="text-sm text-center text-gray-600 mt-4">
+        Don’t have an account?
+        <a href="{% url 'register' %}" class="text-blue-600 hover:underline">Register</a>
+      </p>
+    </div>
+  </div>
+{% endblock %}

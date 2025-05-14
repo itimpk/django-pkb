@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.postgres',  # for full-text search later
     'notes',
+    'accounts',
     'taggit',  # for tagging support
     "widget_tweaks",
 ]
@@ -129,3 +130,6 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
+LOGIN_REDIRECT_URL = 'note_list'
+LOGOUT_REDIRECT_URL = 'login'
+LOGIN_URL = 'login'

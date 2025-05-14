@@ -1,15 +1,43 @@
 <nav class="bg-white shadow-sm">
     <div class="max-w-4xl mx-auto px-4 py-3 flex justify-between items-center">
-      <a href="{% url 'note_list' %}" class="text-lg font-semibold text-blue-600">My Notes</a>
-  
-      <div class="space-x-4 text-sm">
-        {% if user.is_authenticated %}
-          <span class="text-gray-600">Hello, {{ user.username }}</span>
-          <a href="{% url 'logout' %}" class="text-blue-500 hover:underline">Logout</a>
-        {% else %}
-          <a href="{% url 'login' %}" class="text-blue-500 hover:underline">Login</a>
-        {% endif %}
-      </div>
+        <a href="{% url 'note_list' %}" class="text-lg font-semibold text-blue-600">My Notes</a>
+
+        <div class="flex items-center space-x-2 relative">
+            {% if user.is_authenticated %}
+                <span class="text-gray-600 text-sm">Hello, {{ user.username }}</span>
+                <div class="relative">
+                    <button id="user-menu-button" class="focus:outline-none">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-gray-600">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                        </svg>
+                    </button>
+                    <div id="user-menu" class="absolute right-0 top-full mt-1 w-32 bg-white rounded-md shadow-lg py-1 z-10 hidden" aria-labelledby="user-menu-button">
+                        <form method="post" action="{% url 'logout' %}" class="px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                            {% csrf_token %}
+                            <button type="submit" class="w-full text-left focus:outline-none">Logout</button>
+                        </form>
+                    </div>
+                </div>
+                <script>
+                    document.addEventListener('DOMContentLoaded', function() {
+                        const button = document.getElementById('user-menu-button');
+                        const menu = document.getElementById('user-menu');
+
+                        button.addEventListener('click', () => {
+                            menu.classList.toggle('hidden');
+                        });
+
+                        // Close dropdown when clicking outside
+                        document.addEventListener('click', (event) => {
+                            if (!button.closest('.relative').contains(event.target) && !menu.contains(event.target)) {
+                                menu.classList.add('hidden');
+                            }
+                        });
+                    });
+                </script>
+            {% else %}
+                <a href="{% url 'login' %}" class="text-blue-500 hover:underline">Login</a>
+            {% endif %}
+        </div>
     </div>
-  </nav>
-  
+</nav>

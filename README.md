@@ -11,9 +11,9 @@ A simple notes application built with Django.
 -   [✅] Create list view for user’s notes
 -   [✅] Create detail view for each note
 -   [✅] Add forms to create/edit/delete notes
--   [ ] Add authentication (login/logout)
--   [ ] Restrict notes to the current user
--   [ ] Add navigation bar (with login/logout)
+-   [✅] Add authentication (login/logout)
+-   [✅] Restrict notes to the current user
+-   [✅] Add navigation bar (with login/logout)
 
 ### 🎨 UI/UX
 
