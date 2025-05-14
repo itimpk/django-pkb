@@ -1,4 +1,4 @@
-from django.shortcuts import render , redirect
+from django.shortcuts import render , redirect , get_object_or_404
 from .models import Note
 from django.contrib.auth.decorators import login_required
 from .forms import NoteForm
@@ -31,3 +31,10 @@ def note_update(request, id):
         form.save()
         return redirect('note_list')
     return render(request, 'notes/note_form.html', {'form': form})
+
+def note_delete(request, id):
+    note = Note.objects.get(id=id, owner=request.user)
+    if request.method == 'POST':
+        note.delete()
+        return redirect('note_list')
+    return redirect('note_detail', id=id)
