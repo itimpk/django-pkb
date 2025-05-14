@@ -23,3 +23,11 @@ def note_form(request):
 def note_detail(request, id):
     note = Note.objects.get(id=id, owner=request.user)
     return render(request, 'notes/note_detail.html', {'note': note})
+
+def note_update(request, id):
+    note = Note.objects.get(id=id, owner=request.user)
+    form = NoteForm(request.POST or None, instance=note)
+    if request.method == 'POST' and form.is_valid():
+        form.save()
+        return redirect('note_list')
+    return render(request, 'notes/note_form.html', {'form': form})

@@ -4,6 +4,8 @@
 {% block title %}{{ form.instance.pk|yesno:"Edit Note,Add Note" }}{% endblock %}
 
 {% block content %}
+<div class="min-h-screen py-8 px-4">
+  <div class="max-w-3xl mx-auto bg-white shadow-md rounded-xl p-6">
   <h2 class="text-xl font-semibold mb-4">
     {{ form.instance.pk|yesno:"Edit Note,Add Note" }}
   </h2>
@@ -36,4 +38,5 @@
       </button>
     </div>
   </form>
+</div>
 {% endblock %}
