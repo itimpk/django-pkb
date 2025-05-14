@@ -25,9 +25,9 @@ A simple notes application built with Django.
 
 ### 🔎 Search & Filter
 
--   [ ] Add keyword search on note titles and content
--   [ ] Add tag filtering
--   [ ] Use `django-filter` or custom logic
+-   [✅] Add keyword search on note titles and content
+-   [✅] Add tag filtering
+-   [✅] Use `django-filter` or custom logic
 
 ### 📁 Attachments (Optional for V2)
 
